@@ -54,9 +54,9 @@ defmodule AnalysisHistory.Results do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_analysis_result(attrs \\ %{}, user_id) do
+  def create_analysis_result(attrs \\ %{}) do
     %AnalysisResult{}
-    |> AnalysisResult.changeset(attrs, user_id)
+    |> AnalysisResult.changeset(attrs)
     |> Repo.insert()
   end
 

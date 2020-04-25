@@ -15,10 +15,9 @@ defmodule AnalysisHistory.Results.AnalysisResult do
   end
 
   @doc false
-  def changeset(analysis_result, attrs, user_id) do
+  def changeset(analysis_result, attrs) do
     analysis_result
     |> cast(attrs, [:user_id, :query, :url, :length, :average_length, :score])
-    |> cast(%{"user_id" => String.to_integer(user_id)}, [:user_id])
     |> validate_required([:user_id, :query, :url, :length, :average_length, :score])
   end
 end
