@@ -15,7 +15,7 @@ defmodule AnalysisHistoryWeb.AnalysisResultController do
     with {:ok, %AnalysisResult{} = analysis_result} <- Results.create_analysis_result(analysis_result_params) do
       conn
       |> put_status(:created)
-      |> render("show.json", analysis_result: analysis_result)
+      |> render("analysis_result.json", analysis_result: analysis_result)
     end
   end
 
