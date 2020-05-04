@@ -12,7 +12,8 @@ defmodule AnalysisHistoryWeb.AnalysisResultController do
   end
 
   def create(conn, %{"analysis_result" => analysis_result_params}) do
-    with {:ok, %AnalysisResult{} = analysis_result} <- Results.create_analysis_result(analysis_result_params) do
+    user_id = Guardian.Plug.current_claims(conn)["sub"]
+    with {:ok, %AnalysisResult{} = analysis_result} <- Results.create_analysis_result(analysis_result_params, user_id) do
       conn
       |> put_status(:created)
       |> render("analysis_result.json", analysis_result: analysis_result)

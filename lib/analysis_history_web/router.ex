@@ -11,12 +11,9 @@ defmodule AnalysisHistoryWeb.Router do
   end
 
   scope "/history/v1", AnalysisHistoryWeb do
-    pipe_through [:api]
-    post "/save", AnalysisResultController, :create
-  end
-
-  scope "/history/v1", AnalysisHistoryWeb do
     pipe_through [:api, :jwt_authenticated]
     get "/", AnalysisResultController, :show
+    post "/save", AnalysisResultController, :create
+    delete "/delete", AnalysisResultController, :delete
   end
 end

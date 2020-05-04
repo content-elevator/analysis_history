@@ -11,7 +11,9 @@ defmodule AnalysisHistoryWeb.AnalysisResultView do
   end
 
   def render("analysis_result.json", %{analysis_result: analysis_result}) do
-    %{ user_id: analysis_result.user_id,
+    %{
+      id: analysis_result.id,
+      user_id: analysis_result.user_id,
       query: analysis_result.query,
       url: analysis_result.url,
       length: analysis_result.length,
