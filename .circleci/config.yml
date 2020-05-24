@@ -49,8 +49,8 @@ jobs:
     steps:
       - checkout
       - run: echo y | sudo pip install gigalixir
-      - run: echo Y | gigalixir login --email ${gigalixir_email_history} --password ${gigalixir_pass}
-      - run: git remote add gigalixir ${history_live_repo_url}
+      - run: echo Y | gigalixir login --email ${gigalixir_email} --password ${gigalixir_pass}
+      - run: git remote add gigalixir ${live_repo_url}
       - run: git push gigalixir master
       - run: gigalixir ps
       - run: gigalixir run mix ecto.migrate
