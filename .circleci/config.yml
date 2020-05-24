@@ -49,8 +49,8 @@ jobs:
     steps:
       - checkout
       - run: echo y | sudo pip install gigalixir
-      - run: echo Y | gigalixir login --email "daniftincaalexandru+giga2@gmail.com" --password "gigalixir1234"
-      - run: git remote add gigalixir https://git.gigalixir.com/analysis-history.git
+      - run: echo Y | gigalixir login --email ${gigalixir_email_history} --password ${gigalixir_pass}
+      - run: git remote add gigalixir ${history_live_repo_url}
       - run: git push gigalixir master
       - run: gigalixir ps
       - run: gigalixir run mix ecto.migrate
