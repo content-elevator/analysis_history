@@ -2,8 +2,8 @@ defmodule TCPConnection do
 
   use Connection
 
-  def start_link(host, port, queue, opts \\ [], timeout \\ 5000) do
-    Connection.start_link(__MODULE__, {host, port, queue, opts, timeout})
+  def start_link(host, port, opts, timeout \\ 5000) do
+    Connection.start_link(__MODULE__, {host, port, opts, timeout})
   end
 
   def send(conn, data), do: Connection.call(conn, {:send, data})
@@ -14,11 +14,9 @@ defmodule TCPConnection do
 
   def close(conn), do: Connection.call(conn, :close)
 
-  def init({host, port, queue, opts, timeout}) do
-    TCPConnection.Worker.start_link(self(), queue)
-
-    state = %{host: host, port: port, opts: opts, timeout: timeout, sock: nil}
-    {:connect, :init, state}
+  def init({host, port, opts, timeout}) do
+    s = %{host: host, port: port, opts: opts, timeout: timeout, sock: nil}
+    {:connect, :init, s}
   end
 
   def connect(_, %{sock: nil, host: host, port: port, opts: opts,
@@ -72,19 +70,3 @@ defmodule TCPConnection do
 end
 
 
-defmodule TCPConnection.Worker do
-  @moduledoc """
-  Worker that reads log messages from a BlockingQueue and writes them to
-  Logstash using a TCP connection.
-  """
-
-  def start_link(conn, queue) do
-    spawn_link(fn -> consume_messages(conn, queue) end)
-  end
-
-  defp consume_messages(conn, queue) do
-    msg = BlockingQueue.pop(queue)
-    TCPConnection.send(conn, msg)
-    consume_messages(conn, queue)
-  end
-end
