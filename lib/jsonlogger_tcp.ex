@@ -108,10 +108,10 @@ defmodule JsonLogger.TCP do
     level = Keyword.get(opts, :level, :info)
     host = Keyword.get(opts, :host)
     port = Keyword.get(opts, :port)
-    queue = Keyword.get(opts, :queue) || nil
-    buffer_size = Keyword.get(opts, :buffer_size) || 10_000
-    workers = Keyword.get(opts, :workers) || 4
-    worker_pool = Keyword.get(opts, :worker_pool) || nil
+    queue = nil
+    buffer_size =  10_000
+    workers = 4
+    worker_pool = nil
 
     # Create new queue
     if queue == nil do
