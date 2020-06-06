@@ -1,6 +1,7 @@
 defmodule JsonLogger.TCP do
 
 
+
   @moduledoc """
   Logger backend which logs to console in JSON format.
   """
@@ -15,15 +16,7 @@ defmodule JsonLogger.TCP do
     {:ok, :ok, configure(name, opts)}
   end
 
-  defp configure(name, opts) do
-    env = Application.get_env(:logger, name, [])
-    opts = Keyword.merge(env, opts)
-    Application.put_env(:logger, name, opts)
 
-    level = Keyword.get(opts, :level, :info)
-
-    %{level: level, name: name}
-  end
 
   def handle_event({_level, group_leader, _info}, state)
       when node(group_leader) != node() do

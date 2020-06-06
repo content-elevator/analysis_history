@@ -47,7 +47,8 @@ defmodule AnalysisHistory.MixProject do
       {:new_relic_agent, "~> 1.0"},
       {:guardian, "~> 1.0"},
       {:elasticsearch, "~> 1.0.0"},
-      {:poison, "~> 3.1"}
+      {:poison, "~> 3.1"},
+      {:connection, "~> 1.0"}
     ]
   end
 
