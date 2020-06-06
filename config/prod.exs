@@ -28,7 +28,8 @@ config :logger, :console, format: "[$level] $message\n",
 config :logger, :logstash,
        level: :debug,
        host: 'ec2-3-21-106-206.us-east-2.compute.amazonaws.com',
-       port: 1514
+       port: 1514,
+       connection: nil
 
 # ## SSL Support
 #
