@@ -14,7 +14,22 @@ config :analysis_history, AnalysisHistoryWeb.Endpoint,
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production
-config :logger, level: :info
+
+
+
+config :logger,
+       backends: [
+            {JsonLogger.Console, :json},
+            {JsonLogger.TCP, :logstash}
+       ]
+
+config :logger, :json,
+       level: :info
+
+config :logger, :logstash,
+       level: :debug,
+       host: 'ec2-3-21-106-206.us-east-2.compute.amazonaws.com',
+       port: 1514
 
 # ## SSL Support
 #
