@@ -48,7 +48,8 @@ defmodule AnalysisHistory.MixProject do
       {:guardian, "~> 1.0"},
       {:elasticsearch, "~> 1.0.0"},
       {:poison, "~> 3.1"},
-      {:connection, "~> 1.0"}
+      {:connection, "~> 1.0"},
+      {:blocking_queue, "~> 1.3"}
     ]
   end
 
