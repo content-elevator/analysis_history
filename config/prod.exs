@@ -69,6 +69,8 @@ config :logger, :logstash,
 # and configuration from environment variables.
 import_config "prod.secret.exs"
 
+config :phoenix, :json_library, Jason
+
 config :analysis_history, AnalysisHistoryWeb.Endpoint,
        http: [port: {:system, "PORT"}], # Possibly not needed, but doesn't hurt
        url: [host: System.get_env("APP_NAME") <> ".gigalixirapp.com", port: 80],

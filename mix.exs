@@ -46,7 +46,8 @@ defmodule AnalysisHistory.MixProject do
       {:cors_plug, "~> 2.0"},
       {:new_relic_agent, "~> 1.0"},
       {:guardian, "~> 1.0"},
-      {:elasticsearch, "~> 1.0.0"}
+      {:elasticsearch, "~> 1.0.0"},
+      {:poison, "~> 3.1"}
     ]
   end
 

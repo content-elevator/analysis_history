@@ -1,5 +1,5 @@
 defmodule JsonLogger.TCP do
-
+  use TCPConnection
 
   @moduledoc """
   Logger backend which logs to console in JSON format.
