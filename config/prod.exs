@@ -19,7 +19,6 @@ use Mix.Config
 
 config :logger,
        backends: [
-            {JsonLogger.Console, :json},
             {JsonLogger.TCP, :logstash}
        ]
 
