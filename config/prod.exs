@@ -23,7 +23,7 @@ config :logger,
             {JsonLogger.TCP, :logstash}
        ]
 
-config :logger, :json,
+config :logger, :console, format: "[$level] $message\n",
        level: :info
 
 config :logger, :logstash,
