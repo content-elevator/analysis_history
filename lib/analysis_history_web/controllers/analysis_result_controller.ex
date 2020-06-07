@@ -1,6 +1,6 @@
 defmodule AnalysisHistoryWeb.AnalysisResultController do
   use AnalysisHistoryWeb, :controller
-  required Logger
+  require Logger
 
   alias AnalysisHistory.Results
   alias AnalysisHistory.Results.AnalysisResult
