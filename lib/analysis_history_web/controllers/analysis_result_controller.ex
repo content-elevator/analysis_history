@@ -1,5 +1,6 @@
 defmodule AnalysisHistoryWeb.AnalysisResultController do
   use AnalysisHistoryWeb, :controller
+  required Logger
 
   alias AnalysisHistory.Results
   alias AnalysisHistory.Results.AnalysisResult
@@ -13,6 +14,7 @@ defmodule AnalysisHistoryWeb.AnalysisResultController do
 
   def create(conn, %{"analysis_result" => analysis_result_params}) do
     user_id = Guardian.Plug.current_claims(conn)["sub"]
+    Logger.info "Saving new history entry for user with id: #{user_id}"
     with {:ok, %AnalysisResult{} = analysis_result} <- Results.create_analysis_result(analysis_result_params, user_id) do
       conn
       |> put_status(:created)
@@ -22,6 +24,7 @@ defmodule AnalysisHistoryWeb.AnalysisResultController do
 
   def show(conn, _params) do
     user_id = Guardian.Plug.current_claims(conn)["sub"]
+    Logger.info "Returning history for user with id: #{user_id}"
     analysis_results = Results.list_all_for_user_id(user_id)
     render(conn, "index.json", analysis_results: analysis_results)
   end
